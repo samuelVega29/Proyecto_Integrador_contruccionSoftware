@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard Admin</title>
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <h2>Bienvenido, <%= user.name %> (Rol: <%= user.role %>)</h2>
+            <p>Identificación: <%= user.identification %></p>
+            <a href="/users/create">| Crear nuevo usuario |</a>
+            <a href="/projects">Admin proyectos |</a>
+            <form action="/logout" method="POST" style="display:inline;">
+                <a href="/logout">Cerrar Sesión |</a>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Identificación</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Usuario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(u => { %>
+                    <tr>
+                        <td><%= u.id %></td>
+                        <td><%= u.name %></td>
+                        <td><%= u.identification %></td>
+                        <td><%= u.email %></td>
+                        <td><%= u.role %></td>
+                        <td><%= u.username %></td>
+                        <td>
+                            <a href="/users/edit/<%= u.id %>">Editar</a>
+                            <form action="/users/delete/<%= u.id %>"
+                                method="POST" style="display:inline;">
+                                <button type="submit"
+                                    onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+        // Verificar si hay un mensaje de error en la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+
+        if (error) {
+            alert(error); // Mostrar el mensaje de error como un alert
+        }
+    </script>
+    </body>
+</html>

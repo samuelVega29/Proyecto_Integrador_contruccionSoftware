@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Proyecto</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Crear Nuevo Proyecto</h2>
+        
+        <% if (error) { %>
+            <script>
+                alert("<%= error %>");
+            </script>
+        <% } %>
+
+        <form action="/projects" method="POST">
+            <label for="project_code">Código del Proyecto:</label>
+            <input type="text" name="project_code" required>
+            <label for="project_name">Nombre del Proyecto:</label>
+            <input type="text" name="project_name" required>
+            <label for="project_type">Tipo de Proyecto:</label>
+            <select name="project_type" required>
+                <option value="pasantía">Pasantía</option>
+                <option value="artículo">Artículo</option>
+                <option value="trabajo de grado">Trabajo de Grado</option>
+            </select>
+            <label for="teacher_id">Docente a Cargo:</label>
+            <select name="teacher_id" required>
+                <% teachers.forEach(teacher => { %>
+                    <option value="<%= teacher.id %>"><%= teacher.name %></option>
+                <% }); %>
+            </select>
+            <button type="submit">Crear Proyecto</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Editar Proyecto</title>
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <h2>Editar Proyecto</h2>
+            <form action="/projects/update/<%= project.id %>" method="POST">
+                <label for="project_code">Código del Proyecto:</label>
+                <input type="text" name="project_code"
+                    value="<%= project.project_code %>" required>
+                <label for="project_name">Nombre del Proyecto:</label>
+                <input type="text" name="project_name"
+                    value="<%= project.project_name %>" required>
+                <label for="project_type">Tipo de Proyecto:</label>
+                <select name="project_type" required>
+                    <option value="pasantía" <%=project.project_type ===
+                        'pasantía' ? 'selected' : '' %>>Pasantía</option>
+                    <option value="artículo" <%=project.project_type ===
+                        'artículo' ? 'selected' : '' %>>Artículo</option>
+                    <option value="trabajo de grado" <%=project.project_type ===
+                        'trabajo de grado' ? 'selected' : '' %>>Trabajo de
+                        Grado</option>
+                </select>
+                <label for="teacher_id">Docente a Cargo:</label>
+                <select name="teacher_id">
+                    <% teachers.forEach(teacher => { %>
+                    <option value="<%= teacher.id %>" <%=project.teacher_id ===
+                        teacher.id ? 'selected' : '' %>><%= teacher.name
+                        %></option>
+                    <% }) %>
+                </select>
+                <button type="submit">Actualizar Proyecto</button>
+            </form>
+            <form action="/projects/delete/<%= project.id %>" method="POST">
+                <button type="submit"
+                    onclick="return confirm('¿Estás seguro de que deseas eliminar este proyecto?')">Eliminar
+                    Proyecto</button>
+            </form>
+            <a href="/dashboard">| Regresar al Dashboard |</a>
+            <a href="/projects">Admin proyectos |</a>
+            <form action="/logout" method="POST" style="display:inline;">
+                <a href="/logout">Cerrar Sesión |</a>
+            </form>
+
+            <script>
+            // Verificar si hay un mensaje de error en la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+
+            if (error) {
+                alert(error); // Mostrar el mensaje de error como un alert
+            }
+        </script>
+        </div>
+    </body>
+</html>

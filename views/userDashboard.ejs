@@ -1,0 +1,24 @@
+<!-- views/userDashboard.ejs -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - <%= user.name %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido, <%= user.name %> (Rol: <%= user.role %>)</h1>
+
+        <!-- Enlace para editar el perfil -->
+        <div>
+            <a href="/profile/edit" class="button">Editar mi información</a>
+        </div>
+
+        <div>
+            <a href="/logout" class="button">Cerrar Sesión</a>
+        </div>
+    </div>
+</body>
+</html>
