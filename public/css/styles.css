@@ -20,7 +20,7 @@ body {
 
 .dividir_dos {
   display: grid;
-  grid-template-columns: 55% 45%;
+  grid-template-columns: 60% 40%;
   height: 100%;
   width: 100%;
 }
@@ -31,23 +31,26 @@ body {
 }
 
 .banner2 {
-  background-image: url("https://craftwork-images.b-cdn.net/wp-content/uploads/grainy-20-looking-for-inspiration.png");
+  background-image: url("https://u-static.fotor.com/images/text-to-image/result/PRO-4ff108380b5b4c9fb9740381279aef11.jpg");
+  background-size: cover;
+  background-position: center;
 }
+
 .img1 {
   background-image: url("https://craftwork.design/wp-content/uploads/grainy-18-current-project.png");
 }
 
 .seccion_derecha {
-  height: 38rem;
-  width: 30rem;
+  height: 30rem;
+  width: 25rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1rem;
   margin: auto;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 0 26px rgba(82, 88, 195, 0.553);
   font-family: var(--parrafos);
   background-color: #213864;
   color: white;
@@ -55,18 +58,46 @@ body {
 .cabecera a {
   color: white;
 }
+/*.cabecera {
+  border-bottom: 4px solid rgb(255, 255, 255) !important;
+} */
 
 .seccion_derecha h2 {
   font-family: var(--titulo);
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 800;
 }
-.busqueda h2 {
+.seccion_derecha p {
+  font-family: var(--parrafos);
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.cabecera {
+  background-color: #213864;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  color: white;
   font-family: var(--titulo);
-  font-size: 2rem;
-  font-weight: 900;
-  text-align: center;
-  color: #213864;
+}
+.cabecera img {
+  width: 243px;
+  height: 68px;
+  margin: 40px;
+}
+.cabecera h1 {
+  font-size: 2.2rem;
+}
+footer {
+  display: grid;
+  place-items: center;
+  background-color: #213864;
+  height: 50px;
+  color: white;
+  font-family: var(--titulo);
 }
 
 button {
@@ -92,6 +123,7 @@ button:hover {
   margin: 1px;
   display: flex;
   flex-direction: column;
+  font-size: 15px;
 }
 
 input,
@@ -112,33 +144,6 @@ form {
   gap: 10px;
 }
 
-.cabecera {
-  background-color: #213864;
-  height: 100px;
-  display: grid;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  color: white;
-  font-family: var(--titulo);
-}
-.cabecera img {
-  width: 243px;
-  height: 68px;
-  margin: 30px;
-}
-.cabecera h1 {
-  font-size: 2.2rem;
-}
-footer {
-  display: grid;
-  place-items: center;
-  background-color: #213864;
-  height: 50px;
-  color: white;
-  font-family: var(--titulo);
-}
 .redirecionamiento {
   display: flex;
   gap: 2px;
@@ -146,10 +151,6 @@ footer {
 }
 .redirecionamiento a {
   color: #3498db;
-}
-
-.banner1 {
-  background-image: url("hhttps://craftwork-images.b-cdn.net/wp-content/uploads/grainy-17-connection-quality.png");
 }
 
 /* ----------------------------------------------------------------------------- */
