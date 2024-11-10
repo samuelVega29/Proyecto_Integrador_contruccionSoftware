@@ -1,64 +1,125 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dashboard Admin</title>
-        <link rel="stylesheet" href="/css/styles.css">
-    </head>
-    <body>
-        <div class="container">
-            <h2>Bienvenido, <%= user.name %> (Rol: <%= user.role %>)</h2>
-            <p>Identificación: <%= user.identification %></p>
-            <a href="/users/create">| Crear nuevo usuario |</a>
-            <a href="/projects">Admin proyectos |</a>
-            <form action="/logout" method="POST" style="display:inline;">
-                <a href="/logout">Cerrar Sesión |</a>
-            </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="../public/css/styles.css" />
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Identificación</th>
-                        <th>Email</th>
-                        <th>Rol</th>
-                        <th>Usuario</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% users.forEach(u => { %>
-                    <tr>
-                        <td><%= u.id %></td>
-                        <td><%= u.name %></td>
-                        <td><%= u.identification %></td>
-                        <td><%= u.email %></td>
-                        <td><%= u.role %></td>
-                        <td><%= u.username %></td>
-                        <td>
-                            <a href="/users/edit/<%= u.id %>">Editar</a>
-                            <form action="/users/delete/<%= u.id %>"
-                                method="POST" style="display:inline;">
-                                <button type="submit"
-                                    onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <% }) %>
-                </tbody>
-            </table>
+    <link
+      rel="shortcut icon"
+      href="https://c0.klipartz.com/pngpicture/128/948/gratis-png-universidad-de-saint-thomas-aquinas-universidad-de-valladolid-universidad-de-santo-tomas-universidad-de-oxford-universidad-de-santo-tomas-thumbnail.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div class="container_grid">
+      <div class="grid_navegacion">
+        <div>
+          <img
+            class="img_logo"
+            src="https://www.santototunja.edu.co/images/01-USTATunja/01-USTA-Tunja-Imagenes/logo_santoto_tunja_2022.png"
+            alt=""
+          />
+        </div>
+        <ul class="navegacion_admi">
+          <li>
+            <img
+              src="https://cdn-icons-png.freepik.com/512/9750/9750884.png?ga=GA1.1.67356358.1685806904"
+              alt=" foto-administrador"
+            />
+
+            <a href="">Administrar usuarios</a>
+          </li>
+          <li>
+            <img
+              src="https://cdn-icons-png.freepik.com/512/417/417756.png?ga=GA1.1.67356358.1685806904"
+              alt="foto-listar"
+            />
+            <a href="">listar usuarios</a>
+          </li>
+          <li>
+            <img
+              src="https://cdn-icons-png.freepik.com/512/3287/3287505.png?ga=GA1.1.67356358.1685806904"
+              alt="salir"
+            />
+            <a href="">salir del sistema</a>
+          </li>
+        </ul>
+      </div>
+      <div class="grid_dashboard">
+        <div class="item_bienvenida">
+          <h2>Bienvenido, <%= user.name %> (Rol: <%= user.role %>)</h2>
+          <p>Identificación: <%= user.identification %></p>
         </div>
 
-        <script>
-        // Verificar si hay un mensaje de error en la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const error = urlParams.get('error');
+        <div class="grid_user_dashboard">
+          <div class="item item_1">
+            <a href="">Agregar usuarios </a>
+          </div>
+          <div class="item item_2">
+            <div>
+              <a href="">listar usuarios </a>
+            </div>
+          </div>
+          <div class="item item_3">
+            <a href="">cerrar sesion </a>
+          </div>
 
-        if (error) {
-            alert(error); // Mostrar el mensaje de error como un alert
-        }
+          <div class="item_4">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Identificación</th>
+                  <th>Email</th>
+                  <th>Rol</th>
+                  <th>Usuario</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% users.forEach(u => { %>
+                <tr>
+                  <td><%= u.id %></td>
+                  <td><%= u.name %></td>
+                  <td><%= u.identification %></td>
+                  <td><%= u.email %></td>
+                  <td><%= u.role %></td>
+                  <td><%= u.username %></td>
+                  <td>
+                    <a href="/users/edit/<%= u.id %>">Editar</a>
+                    <form
+                      action="/users/delete/<%= u.id %>"
+                      method="POST"
+                      style="display: inline"
+                    >
+                      <button
+                        type="submit"
+                        onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')"
+                      >
+                        Eliminar
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Verificar si hay un mensaje de error en la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const error = urlParams.get("error");
+
+      if (error) {
+        alert(error); // Mostrar el mensaje de error como un alert
+      }
     </script>
-    </body>
+  </body>
 </html>
