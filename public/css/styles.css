@@ -196,11 +196,22 @@ form {
 }
 .item_bienvenida {
   background-color: #26658c;
-  height: 5rem;
+  height: 8rem;
   border-radius: 10px;
   padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #ffffff;
+  font-family: var(--parrafos);
 }
-
+.img_bienvenida {
+  height: 150px;
+}
+.imag_flex{
+  display: flex;
+  flex-direction: column;
+}
 .grid_user_dashboard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -212,27 +223,53 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   border-radius: 10px;
+  background-color: #6a93bc;
+  font-size: 15px;
+  margin: 10px;
+}
+.item a {
+  text-decoration: none;
+  color: #fefefe;
+  padding: 10px;
+  margin-top: 15px;
 }
 
+.item a:hover {
+  border-bottom: 1px solid white;
+  transition: 0.5s;
+  color: #c1deec;
+}
 
 .item_1 {
-  border: 4px solid #f2811d;
-  grid-column: 1 / 2;
-  height: 120px;
+  grid-column: 2 / 3;
+  grid-row: 1 / 4;
 }
 .item_2 {
-  border: 4px solid #4ab0d9;
-  grid-column: 2 / 3;
+  grid-column: 3 / 4;
+  grid-row: 1 / 4;
 }
 .item_3 {
-  background-color: #d9ae89;
+  grid-column: 3 / 4;
+}
+.item_4 {
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
+}
+.img_bienvenida2 {
+  height: 300px;
+  padding: 10px;
 }
 
-.item_4 {
+.item_5 {
   background-color: #ffffff;
   grid-column: 1 / 4;
+}
+
+.tb-inicio {
+  font-size: 14px;
+  margin: 10px;
 }
 
 /* Estilo para tablas */
