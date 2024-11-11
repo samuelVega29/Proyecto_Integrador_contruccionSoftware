@@ -60,7 +60,7 @@ app.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ where: { username } });
     if (!user) {
-      return res.redirect("/login?error=Usuario o contraseña incorrectos");
+      return res.redirect("/login?error=Usuario o contraseña incorrectas");
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -70,7 +70,15 @@ app.post("/login", async (req, res) => {
 
     req.session.userId = user.id;
     req.session.role = user.role;
-    res.redirect("/dashboard");
+
+    // Redirigir según el rol
+    if (user.role === "admin") {
+      res.redirect("/dashboard");
+    } else if (user.role === "docente") {
+      res.redirect("/docenteDashboard");
+    } else {
+      res.redirect("/userDashboard");
+    }
   } catch (err) {
     console.error(err);
     res.status(500).send("Error en la autenticación");
@@ -87,6 +95,8 @@ app.get("/dashboard", isAuthenticated, async (req, res) => {
         user: loggedInUser,
         users: allUsers,
       });
+    } else if (loggedInUser.role === "docente") {
+      return res.redirect("/docenteDashboard");
     } else {
       return res.render("userDashboard", { user: loggedInUser });
     }
@@ -96,13 +106,26 @@ app.get("/dashboard", isAuthenticated, async (req, res) => {
   }
 });
 
-app.get("/logout", (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      return res.status(500).send("Error al cerrar sesión");
+// Ruta para el dashboard del docente
+app.get("/docenteDashboard", isAuthenticated, async (req, res) => {
+  try {
+    const loggedInUser = await User.findByPk(req.session.userId);
+    if (loggedInUser.role !== "docente") {
+      return res.redirect("/dashboard");
     }
-    res.redirect("/login");
-  });
+
+    const projects = await Project.findAll({
+      where: { teacher_id: loggedInUser.id },
+    });
+
+    res.render("docenteDashboard", {
+      user: loggedInUser,
+      projects: projects,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error en la consulta");
+  }
 });
 
 // Rutas CRUD protegidas con isAuthenticated e isAdmin
